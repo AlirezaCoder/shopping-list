@@ -1,11 +1,15 @@
 """
 this module coded by Alireza 21/10/97
 """
-items = []
-messages = ["select \"Done\" to stop procedure.",
-            "select \"Help\" to show help.",
-            "select \"Show\" to show items.",
-            "please enter your command:"]
+items = set()
+
+
+def get_messages():
+    messages = ["select \"Done\" to stop procedure.",
+                "select \"Help\" to show help.",
+                "select \"Show\" to show items.",
+                "please enter your command:"]
+    return messages
 
 
 def select_operation(_input):
@@ -30,13 +34,11 @@ def run_help_command():
 
 
 def run_done_command():
-    global items
     print(items)
     exit()
 
 
 def run_show_command():
-    global items
     if len(items) == 0:
         print("Item List Is Empty.")
     else:
@@ -44,10 +46,7 @@ def run_show_command():
 
 
 def add_item(_input):
-    global items
-    items = set(items)
     items.add(_input)
-    items = list(items)
     print("your item is added successfully.")
 
 
@@ -65,6 +64,7 @@ def show_invalid_error(_error_message=""):
 
 
 while True:
+    messages = get_messages()
     for message in messages:
         print(message)
     item = input()
